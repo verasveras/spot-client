@@ -4,8 +4,12 @@ function formatResponse(response){
 
 }
 
+const options = {headers: {
+      'Access-Control-Allow-Origin': '*'
+  }}
+
 function callDemo() {
-	axios.get('http://spotifyserver.herokuapp.com/api/people')
+	axios.get('http://spotifyserver.herokuapp.com/api/people', options)
 	.then(function (response) {
 
 		$('#main').append('<div class="action"> Made a GET request to /api/people </div>');
