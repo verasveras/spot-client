@@ -18,13 +18,13 @@ function callDemo() {
 	    return axios.post('http://spotifyserver.herokuapp.com/api/people', {
 	    	name: 'Sean',
 	    	favoriteCity: 'New York'
-	  })
+	  	}, options)
 	})
 	.then(function (postedPerson) {
 		$('#main').append('<div class="action"> Made a Post request to /api/people, adding in Sean, whose favorite city is New York </div>');
 		formatResponse(postedPerson);
 
-		return axios.get('http://spotifyserver.herokuapp.com/api/people/'+postedPerson.data.id)
+		return axios.get('http://spotifyserver.herokuapp.com/api/people/' + postedPerson.data.id, options)
 	})
 	.then(function (postedPersonToUpdate){
 		$('#main').append('<div class="action"> Made a Get request to /api/people/${postedPersonToUpdate.id}');
@@ -32,26 +32,26 @@ function callDemo() {
 
 		return axios.put('http://spotifyserver.herokuapp.com/api/people/3', {
 			favoriteCity: 'Brooklyn'
-		})
+		}, options)
 
 	})
 	.then(function(updatedPerson){
 		$('#main').append('<div class="action"> Made a Put request to /api/people/3, updating Sean\'s favorite city to Brooklyn.</div>');
 		formatResponse(updatedPerson);
 
-		return axios.get('http://spotifyserver.herokuapp.com/api/people/1');
+		return axios.get('http://spotifyserver.herokuapp.com/api/people/1', options);
 	})
 	.then(function(personOne){
 		$('#main').append('<div class="action"> Made a Get request to /api/people/1</div>');
 		formatResponse(personOne);
 
-		return axios.delete('http://spotifyserver.herokuapp.com/api/people/1');
+		return axios.delete('http://spotifyserver.herokuapp.com/api/people/1', options);
 	})
 	.then(function(personDeleted){
 		$('#main').append('<div class="action"> Made a Delete request to /api/people/1</div>');
 		formatResponse(personDeleted);
 
-		return axios.get('http://spotifyserver.herokuapp.com/api/people');
+		return axios.get('http://spotifyserver.herokuapp.com/api/people', options);
 	})
 	.then(function(everyone){
 		$('#main').append('<div class="action"> Made a Get request to /api/people</div>');
